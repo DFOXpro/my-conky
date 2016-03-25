@@ -1,0 +1,220 @@
+######################
+# - Conky settings - #
+######################
+update_interval 1
+total_run_times 0
+net_avg_samples 1
+cpu_avg_samples 1
+
+imlib_cache_size 0
+double_buffer yes
+no_buffers no
+
+#############################
+# - Window specifications - #
+#############################
+own_window_class Conky
+own_window_type panel
+own_window yes
+own_window_argb_visual yes
+own_window_argb_value 150
+own_window_colour 000
+own_window_transparent no
+minimum_size 155 1046
+maximum_width 155
+gap_y -12
+gap_x 5
+alignment mr
+
+#########################
+# - Graphics settings - #
+#########################
+
+# - COLORS
+#Gray
+default_color 888888
+color0 white
+#Blue
+color1 5A8AbF
+color2 ff5F06
+color3 888888
+
+#####################
+# - Text settings - #
+#####################
+use_xft yes
+xftfont Ubuntu:size=7
+override_utf8_locale yes
+short_units yes
+
+#######################
+# - Gauges settings - #
+#######################
+default_graph_size 60 10
+default_bar_size 60 10
+
+TEXT
+################
+# - SOFTWARE - #
+################
+${color1}${font Ubuntu:style=Bold:size=14}${alignc}#
+##
+SOFTWARE#
+
+${font}#
+${color}Kernel: ${alignr}${color0}$kernel
+${color}Uptime: ${alignr}${color0}${uptime}
+${color}Users:  ${alignr}${color0}${user_names}#
+
+${color0}${font Poky:size=14}a#
+${color1}${font Ubuntu:style=Bold:size=8}${goto 28}#
+#
+Services#
+
+${font}#
+${color}Daily TV Record:${alignr}#
+${if_running mencoder}${color green}Recording
+${else}#
+${if_running saa7134[0]}${color0}Ready
+${else}${color red}Error
+${endif}#
+${endif}#
+#
+${color}Development:${alignr}#
+${if_running apache2 }${color green}${else}${color}${endif}A2 #
+${if_running mysqld }${color green}${else}${color}${endif}mSQL #
+${if_running postgres }${color green}${else}${color}${endif}PSG
+${color}Backup:${alignr}#
+${if_running dropbox }${color green}${else}${color2}${endif}DB #
+${if_running owncloud }${color green}${else}${color}${endif}OC
+${color}Online:${alignr}#
+${if_running teamviewerd }${color green}${else}${color}${endif}TV#
+
+${color0}${font Poky:size=14}z#
+${color1}${font Ubuntu:style=Bold:size=8}${goto 28}#
+#
+Task list#
+
+${font}#
+${color}CPU#
+${color}${alignc}RAM#
+${color}${alignr}IO: Value#
+
+${color0}${top name 1}${alignr}${color2}${top cpu 1}
+${color0}${top name 2}${alignr}${color2}${top cpu 2}#
+
+${color0}${alignc}${top_mem name 1}${color2}${alignr}${top_mem mem_res 1}
+${color0}${alignc}${top_mem name 2}${color2}${alignr}${top_mem mem_res 2}#
+
+${color0}${alignr}${top_io name 1} ${color2}${top_io io_perc 1}#
+
+${color}Total task${alignr} ${color0}$processes#
+
+###############
+# - SENSORS - #
+###############
+${color1}${font Ubuntu:style=Bold:size=14}${alignc}#
+##
+SENSORS
+${font}#
+${font Ubuntu:style=Bold:size=8}${color1}#
+Hardware
+${color0}${goto 47}${font Weather:size=26}y#
+${alignr 45}${font Devil inside:size=26}q#
+
+${voffset -58}${font}${color}CPU:#
+${if_match ${hwmon 0 temp 1} > 61}${color red}${else}${if_match ${hwmon 0 temp 1} > 55}${color2}${else}${color0}${endif}${endif}#
+${goto 60}${hwmon 0 temp 1}ºC${alignr}${hwmon 0 fan 1}rpm
+${color}MoBo:#
+${if_match ${hwmon 0 temp 2} > 45}${color red}${else}${if_match ${hwmon 0 temp 2} > 40}${color2}${else}${color0}${endif}${endif}#
+${goto 60}${hwmon 0 temp 2}ºC${alignr}${hwmon 0 fan 2}rpm
+${color}HDDs:#
+${if_match ${hddtemp} > 35}${color red}${else}${if_match ${hddtemp} > 40}${color2}${else}${color0}${endif}${endif}#
+${goto 60}${hddtemp}ºC${alignr}${hwmon 0 fan 3}rpm#
+
+${if_match ${cpu cpu0} >80}${color red}#
+${else}${if_match ${cpu cpu0} >50}${color2}#
+${else}${if_running sas.sh}${color green}#
+${else}${color0}#
+${endif}${endif}${endif}#
+${font Poky:size=14}P#
+${voffset -3}${goto 28}${font Ubuntu:style=Bold:size=8}${color1}#
+CPU:#
+${font}#
+${color0}${goto 100}${cpubar cpu0 10,60}${goto 130}${color2}${cpu cpu0}%#
+
+${color}Core:${color0} CPU1 ${goto 58}| CPU2 ${goto 92}| CPU3 ${goto 126}| CPU4
+${color}GHz: ${color1}${freq_g 1}${goto 58}| ${freq_g 2}${goto 92}| ${freq_g 3}${goto 126}| ${freq_g 4}
+${color}Use: ${color1}${cpugraph cpu1 8,34 5684ba E07A1F -t}${cpugraph cpu2 8,34 5684ba E07A1F -t}${cpugraph cpu3 8,34 5684ba E07A1F -t}${cpugraph cpu4 8,33 5684ba E07A1F -t}#
+
+#####
+# - MEM
+${execp ~/.conkycolors/trueMemUsage.pyc}#
+
+#####
+# - GPU (Only works with propietary drivers)
+#${color0}${font Poky:size=14}S#
+#${voffset -3}${goto 28}${font Ubuntu:style=Bold:size=8}${color1}GPU:#
+#${color0}${goto 100}${execbar}
+#${if_match ${execi 1 asd=$(aticonfig --odgc);echo $asd | cut -c79-81;} >600}${color red}${else}${if_match ${execi 1 ~/.conkycolors/grafica1.sh} >50}${color2}#${else}${color0}${endif}${endif}
+#${voffset -28}
+#${voffset -2}${color1}${font}${goto 122}${color2}${execi 1 asd=$(aticonfig --odgc);echo $asd | cut -c168-170;}${color}
+#${goto 32}Type ${alignr 4}Core Memory
+#${execpi 10 ~/.conkycolors/grafica.sh}
+#${goto 32}${color}History: ${color1}${alignr 4}#
+#${execgraph ~/.conkycolors/grafica1.sh  10,60 5684ba E07A1F -t}
+#
+#
+############
+# - DATA - #
+############
+${color1}${font Ubuntu:style=Bold:size=14}${alignc}DATA
+# - NETWORK - #
+${color1}${font Ubuntu:style=Bold:size=8}Network${font}
+# |--ETH0
+${color0}${font VariShapes Solid:size=13}q${font}${color}#
+${goto 28}${voffset -8}Output: ${color1}${upspeed enp2s0}${color}
+${goto 28}Total: ${color2}${totalup enp2s0}#
+${goto 100}${color2}${upspeedgraph enp2s0 10,60 5684ba E07A1F}#
+
+${color0}${font VariShapes Solid:size=13}Q${font}${color}#
+${goto 28}${voffset -10}Input: ${color1}${downspeed enp2s0}${color}
+${goto 28}Total: ${color2}${totaldown enp2s0}#
+${goto 100}${color1}${downspeedgraph enp2s0 10,60 5684ba E07A1F}#
+
+${color0}${font Poky:size=13}w${font}${color}#
+${goto 28}${voffset -11}IP local: ${alignr}${color1}${addr enp2s0}${color}
+${goto 28}IP public: ${alignr}${color2}${execi 60 wget http://checkip.dyndns.org/ -q -O - | grep -Eo '\<[[:digit:]]{1,3}(\.[[:digit:]]{1,3}){3}\>'}#
+
+# |--HDD
+${voffset 5}${color1}${font Ubuntu:style=Bold:size=8}HDD:${font}
+${color0}${font Poky:size=14}H${font}${color}#
+${goto 28}${voffset -12}Source ${goto 70}Read ${goto 120}Write
+${if_existing /dev/sda}#
+${goto 32}${color0}sda ${goto 67}${color1}${diskiograph_read sda 10,45 5684ba E07A1F -t}${goto 72}${color0}${diskio_read sda}${goto 115}${color2}${diskiograph_write sda 10,45 5684ba E07A1F -t}${goto 120}${color0}${diskio_write sda}${endif}#
+${if_existing /dev/sdb}
+${goto 32}${color0}sdb ${goto 67}${color1}${diskiograph_read sdb 10,45 5684ba E07A1F -t}${goto 72}${color0}${diskio_read sdb}${goto 115}${color2}${diskiograph_write sdb 10,45 5684ba E07A1F -t}${goto 120}${color0}${diskio_write sdb}${endif}#
+${if_existing /dev/sdc1}
+${goto 32}${color0}sdc ${goto 67}${color1}${diskiograph_read sdc 10,45 5684ba E07A1F -t}${goto 72}${color0}${diskio_read sdc}${goto 115}${color2}${diskiograph_write sdc 10,45 5684ba E07A1F -t}${goto 120}${color0}${diskio_write sdc}${endif}#
+${if_existing /dev/sdd1}
+${goto 32}${color0}sdd ${goto 67}${color1}${diskiograph_read sdd 10,45 5684ba E07A1F -t}${goto 72}${color0}${diskio_read sdd}${goto 115}${color2}${diskiograph_write sdd 10,45 5684ba E07A1F -t}${goto 120}${color0}${diskio_write sdd}${endif}#
+#${if_existing /dev/sde1}
+#${goto 32}${color0}sde ${goto 67}${color1}${diskiograph_read sde 10,45 5684ba E07A1F -t}${goto 72}${color0}${diskio_read sde}${goto 115}${color2}${diskiograph_write sde 10,45 5684ba E07A1F -t}${goto 120}${color0}${diskio_write sde}${endif}#
+
+# |-- MOUNT
+${voffset 3}${color0}${font Poky:size=14}c#
+${goto 28}${color1}${voffset -4}${font Ubuntu:style=Bold:size=8}Partitions:${font}
+${color}${goto 70}Use/Free ${alignr}Total
+${execpi 30 ~/.conkycolors/mounted.sh}#
+
+############
+# - OVERCLOCK - #
+############
+${color1}${font Ubuntu:style=Bold:size=14}${alignc}OVERCLOCK${font}
+# - Clocks/Multipliers - #
+${color1}${font Ubuntu:style=Bold:size=8}Device:${alignr}Multiplier | Frequency${font}${color}
+Main Clock${goto 200}${color0}200MHz${color}
+CPU${goto 200}${color0}17.5${alignr}3750MHz${color}
+CPU-NB Link${goto 200}${color0}200${color}
+NB${goto 200}${color0}12${alignr}2250MHz${color}
+Memory${goto 200}${color0}200${color}
