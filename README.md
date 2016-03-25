@@ -7,4 +7,4 @@ It uses fonts from old Conky color project (Poky, Weather, Devil, VariShapes).
 Use a python script to display propper memory usage (without buffers and caches)
 
 ## Screenshots
-[![screenshot](https://github.com/DFOXpro/my-conky/edit/master/example.png)](https://github.com/DFOXpro/my-conky/edit/master/example.png)
+[![screenshot](https://raw.githubusercontent.com/DFOXpro/my-conky/master/example.png)](https://raw.githubusercontent.com/DFOXpro/my-conky/master/example.png)
