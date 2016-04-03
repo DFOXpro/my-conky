@@ -42,9 +42,9 @@ color3 888888
 #####################
 # - Text settings - #
 #####################
-use_xft yes
+use_xft true
 xftfont Ubuntu:size=7
-override_utf8_locale yes
+override_utf8_locale true
 short_units yes
 
 #######################
@@ -80,15 +80,10 @@ ${else}${color red}Error
 ${endif}#
 ${endif}#
 #
+${color}Server:${alignr}#
+${execp ~/.conkycolors/ifRunningNonOwner.pyc -l apache2 -l mysqld -l postgres -s f104 -s f141 -s f156 -f flossIcons -u}
 ${color}Development:${alignr}#
-${if_running apache2 }${color green}${else}${color}${endif}A2 #
-${if_running mysqld }${color green}${else}${color}${endif}mSQL #
-${if_running postgres }${color green}${else}${color}${endif}PSG
-${color}Backup:${alignr}#
-${if_running dropbox }${color green}${else}${color2}${endif}DB #
-${if_running owncloud }${color green}${else}${color}${endif}OC
-${color}Online:${alignr}#
-${if_running teamviewerd }${color green}${else}${color}${endif}TV#
+${execp ~/.conkycolors/ifRunningNonOwner.pyc -l java -l ruby -l python -s f12e -s f15d -s f157 -f flossIcons -u}
 
 ${color0}${font Poky:size=14}z#
 ${color1}${font Ubuntu:style=Bold:size=8}${goto 28}#
@@ -218,3 +213,4 @@ CPU${goto 200}${color0}17.5${alignr}3750MHz${color}
 CPU-NB Link${goto 200}${color0}200${color}
 NB${goto 200}${color0}12${alignr}2250MHz${color}
 Memory${goto 200}${color0}200${color}
+

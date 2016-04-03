@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 
 """
-		Print a more accurate mem usage
+		Print a more accurate mem usage show the diference bettwen buffers+cache mem usage
 		in conky
 """
 
