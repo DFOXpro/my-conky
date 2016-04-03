@@ -2,7 +2,7 @@
 Just my conky configs, may be this will be usefull.
 
 ## Fonts
-It uses fonts from old Conky color project (Poky, Weather, Devil, VariShapes) and for brand icons use [Font Mfizz](https://github.com/fizzed/font-mfizz).
+It uses fonts from old Conky color project (Poky, Weather, Devil, VariShapes) and for brand icons I use a fork of [Font Mfizz](https://github.com/fizzed/font-mfizz)(white space and rename changes for conky compatibility).
 ## Scripts
 Very simple python scripts.
 ### Memory usage
