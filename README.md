@@ -12,4 +12,4 @@ Conky's mem show the total memory usage (with buffers and caches),this script di
 Conky's ifrunnig only search for same owner programs, excluding root daemons and others users programs, this script ignore the owner of a pid.
 
 ## Screenshots
-[![screenshot](https://github.com/DFOXpro/my-conky/edit/master/example.png)](https://github.com/DFOXpro/my-conky/edit/master/example.png)
+[![screenshot](https://raw.githubusercontent.com/DFOXpro/my-conky/master/example.png)](https://raw.githubusercontent.com/DFOXpro/my-conky/master/example.png)
